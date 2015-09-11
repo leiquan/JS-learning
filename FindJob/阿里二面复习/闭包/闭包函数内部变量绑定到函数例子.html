@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+		
+		var scole="global scope";//有没有这句话不受影响，跟这个变量无关
+		
+			function checkScope(){
+				var scope="local scope";
+				function f(){
+					return scope;
+				}
+				return f;//这题确实只是返回了函数体，没有执行后返回，但是，里面的变量，必须是作用域的变量，因为返回了作用域链
+			}
+			alert(checkScope()());//可以这么理解：若是返回的f是alert(acope);那么就会用外面的变量，但是，他是return scope，那么就把依赖的作用域反悔了。
+		</script>
+		
+		
+	</body>
+</html>

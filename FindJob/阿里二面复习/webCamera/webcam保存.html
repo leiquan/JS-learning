@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script>
+
+        window.onload = function () {
+        	
+        	var src=null;
+
+            //视频区域
+            var video = document.getElementById("video");
+            var videoObj = { "video": true, "audio": true };
+
+            //画布区域
+            var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+
+            //报错函数
+               var errBack = function (error) {
+                   alert("视频录制初始化失败", error.code);
+               };
+
+            //检测浏览器支持与实现兼容性
+            if (navigator.getUserMedia) { // 标准
+                navigator.getUserMedia(videoObj, function (stream) {
+                    video.src = stream;
+                    video.play();
+                }, errBack);
+            } else if (navigator.webkitGetUserMedia) { // WebKit浏览器
+                navigator.webkitGetUserMedia(videoObj, function (stream) {
+                    video.src = window.webkitURL.createObjectURL(stream);
+                    video.play();
+                }, errBack);
+            } else if (navigator.mozGetUserMedia) { // Firefox浏览器
+                navigator.mozGetUserMedia(videoObj, function (stream) {
+                	src== window.URL.createObjectURL(stream);
+                    video.src =src;
+                    
+                    
+                    
+                    video.play();
+                }, errBack);
+            }
+            //视频检测和处理结束
+
+            //实现截图
+            var snap = document.getElementById("snap");
+            snap.onclick = function () {
+                //首先肯定要获取视频的图像
+                context.drawImage(video, 0, 0, 300, 200);
+                
+                
+                
+                alert(src);
+                
+                //var data=src.readAsBlob();
+                //alert(data.size);
+                var fileReader = new FileReader();
+                var p=fileReader.readAsDataURL(src);
+                p.onloaded=function(){
+                	alert(p);
+                }
+                
+            }
+
+        }
+
+        
+
+    </script>
+</head>
+<body>
+
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="snap">屏幕截图</button>
+    <canvas id="canvas" width="640" height="480"></canvas>
+
+</body>
+</html>

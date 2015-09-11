@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+
+		<script>
+			var f = function() {
+				var scope = 'f0';
+				(function() {
+					var scope = 'f1';
+					(function() {
+						console.log(scope); // 输出 f1
+					})();
+				})();
+			};
+			f();
+		</script>
+
+	</body>
+
+</html>

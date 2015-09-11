@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+
+		<script type="text/javascript">
+			var Person = function() {};
+
+			 //Person.prototype 是一个仅含一个方法的对象
+			Person.prototype.getInfo = function() {
+				alert("username: " + this.username);
+			};
+
+			 //建一个person实例
+			var person = new Person();
+			person.username = "zhangsan";
+
+			person.getInfo();
+
+
+			 //判断__proto__是否引用 Person.prototype
+			if (person.__proto__ == Person.prototype) {
+				alert("__proto__的确是指向其原型对象的引用!");
+			}
+		</script>
+
+	</body>
+
+</html>
