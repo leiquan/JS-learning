@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+
+		<script>
+			function f1() {
+				var n = 1024;
+
+				function f2() {
+					console.log(n)
+				}
+				return f2;
+			}
+			var foo = f1();
+			foo();
+			//f1()();
+			 //以上函数f2()就是闭包
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	
+	<body>
+		
+		    <input id="btn" type="button" value="登陆"></input>
+    		<div id="msg"></div>
+    		
+    		
+    		<script>
+    			window.onload=function(){
+    				
+    var btn = document.getElementById("btn");
+    var msg = document.getElementById("msg");
+    
+    msg.innerHTML = "....";
+    
+    btn.onclick = function(event){
+        console.log("click");
+        var xhr = new XMLHttpRequest();
+        
+        
+        xhr.open("post","http://www.leiquan.me/test/commet/commet.php", true);
+        xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        
+        var id = setTimeout(function() {
+            xhr.abort();
+            alert("timeout");
+        }, 80000);
+        
+        xhr.send("time=80");
+        
+        xhr.onreadystatechange = function(){
+        	
+            if(xhr.readyState == 4){
+                if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
+                    msg.innerHTML = xhr.responseText;
+                    event.target.click();
+                }
+                else{
+                    alert(xhr.status);
+                }
+                clearTimeout(id);
+            }
+            
+        }
+        
+        
+    }
+}
+
+    		</script>
+    		
+    		
+		
+	</body>
+	
+</html>

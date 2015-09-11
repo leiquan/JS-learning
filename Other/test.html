@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+    
+    	#div{
+    		width: 100px;
+    		height: 100px;
+    		background-color: red;
+    		position: absolute;
+    	}
+    	
+    	
+    	#div2{
+    		width: 100px;
+    		height: 100px;
+    		background-color: yellow;
+    		position: absolute;
+    		left:200px;
+    	}
+    	
+    </style>
+    
+    <script src="LeiquanLibrary.js"></script>
+    
+</head>
+<body>
+	
+	<div id="div">1</div>
+	
+	<div id="div2">2</div>
+	
+    <script>
+    
+   
+    window.onload=function(){
+    	
+    	 var operaTool=new ClassOperatingTool();
+    	 operaTool.scrollUpOrDown(window,null,null);
+    	
+    	
+    }
+    </script>
+</body>
+</html>

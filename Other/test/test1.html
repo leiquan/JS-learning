@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+</head>
+<body>
+    <script>
+
+        function Animal(species) {
+            this.species = species;
+            this.say = function () {
+                alert("我是animal，我的种类是"+this.species);
+            }
+        }
+
+        function Cat(species,name, color) {
+            Animal.apply(this);//需要继承谁，就把谁apply一下，就继承到了。可是我们又apply方法啊。那怎么会有方法呢，如果我们不给speices，所以只要apply了，那么方法就有。但是方法内的属性就没法应用了，需要穿进去。
+
+            this.name = name;
+            this.color = color;
+        }
+
+
+        var cat1 = new Cat("动物","大毛", "黑色");
+        cat1.say();
+    </script>
+
+
+
+
+
+</body>
+</html>

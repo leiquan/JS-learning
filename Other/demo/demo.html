@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="html2canvas.js"></script>
+    <style>
+        #content {
+        width:300px;
+        height:400px;
+        border:2px solid yellow;
+        }
+        #another {
+        width:300px;
+        height:400px;
+        border:2px solid yellow;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var c = document.getElementById("content");
+            var ctx = c.getContext("2d");
+            var img = document.getElementById("img");
+            ctx.drawImage(img, 10, 10);
+
+            var imgData = ctx.getImageData(0, 0, 300, 400);
+
+           
+
+
+            var button = document.getElementById("button");
+            button.onclick = function () {
+               var another = document.getElementById("another");
+               var ac = another.getContext("2d");
+                //ac.putImageData(imgData, 0, 0);
+
+               function howuse() {
+                    html2canvas(document.getElementById('img'), {
+                        onrendered: function (ac) {
+                            
+           
+        }
+    });
+}
+
+            }
+
+
+        }
+    </script>
+</head>
+<body>
+
+    <canvas id="content">
+    </canvas>
+    <img src="1.jpg" id="img"/>
+    <input type="button" value="截图" id="button"/>
+
+    <canvas id="another"></canvas>
+
+</body>
+</html>

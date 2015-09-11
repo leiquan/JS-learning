@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+
+		<script>
+		
+		
+		function test(){
+			
+			var n=999;
+			
+			nAdd=function(){
+				n=n+1;
+			}
+			
+			function re(){
+				alert(n);
+			}
+			
+			return re;
+		}
+		
+		
+		var result=test();
+		result();
+		
+		nAdd();
+		
+		result();
+		
+		</script>
+
+	</body>
+
+</html>

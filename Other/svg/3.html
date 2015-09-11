@@ -1,0 +1,147 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Graph Demo</title>
+        <script language='JavaScript'>
+            /* <![CDATA[ */
+            
+            function Slider(id){
+                var sbId='pressure', faceId='face';
+                var ns = 'http://www.w3.org/2000/svg';
+                var svg, sliderBar, slider, bar, face, mouth;
+                var pressed = false; //滑块是否被鼠标按下
+                var offsetY=0; //鼠标按下的位置与滑块在纵坐标上的差值
+                //初始化滑动条各个组件
+                function init(){
+                    face=document.getElementById(faceId);
+                    mouth=face.getElementsByTagNameNS(ns, 'path')[0];
+                    sliderBar = document.getElementById(sbId);
+                    svg = sliderBar.ownerSVGElement;
+                    var rects=sliderBar.getElementsByTagNameNS(ns, 'rect');
+                    for (var i=0, rect; i<rects.length; i++){
+                        rect=rects[i];
+                        if (rect.getAttribute('name')==='bar'){
+                            bar=rect;
+                        }else if(rect.getAttribute('name')==='slider'){
+                            slider=rect;
+                        }else{
+                            break;
+                        }
+                    }
+                }
+                //将一个点从屏幕坐标转换到SVG用户坐标。
+                //需要转换的点的坐标从事件参数event中获得。
+                function toUserCor(event){
+                    //getScreenCTM方法获得的是将一个点从SVG用户坐标转换到屏幕坐标所需的转换矩阵。
+                    //背后是一些有趣的关于平面坐标变换和矩阵的数学。
+                    var m = svg.getScreenCTM();
+                    var p = svg.createSVGPoint();
+                    p.x = event.clientX;
+                    p.y = event.clientY;
+                    //matrixTransform将一个点按照参数中的矩阵做坐标变换。
+                    //因为m是将一个点从SVG用户坐标转换到屏幕坐标所需的转换矩阵，所以需要先用inverse方法获得此矩阵的逆阵。
+                    p = p.matrixTransform(m.inverse());
+                    return p;
+                }
+                
+                //添加事件响应程序
+                function addListeners(){
+                    //鼠标悬浮时，高亮（将颜色设为白色）滑块。
+                    slider.addEventListener('mouseover', function(){
+                        //Firefox不支持用脚本访问SVG专门的样式属性this.style.fill = 'white';
+                        this.setAttribute('fill', 'white');
+                    }, false);
+                    //鼠标退出时，恢复滑块的颜色。
+                    slider.addEventListener('mouseout', function(){
+                        if (!pressed) {
+                            this.setAttribute('fill', 'grey');
+                        }
+                    }, false);
+                    //鼠标按下时，记录下鼠标状态和其与滑块在纵坐标上的差值，高亮滑块。
+                    slider.addEventListener('mousedown', function(event){
+                        pressed = true;
+                        var p = toUserCor(event);
+                        var sliderBox=slider.getBBox();
+                        offsetY=sliderBox.y-p.y;    
+                        this.setAttribute('fill', 'white');
+                    }, false);
+                    //鼠标键松开时，更改状态。
+                    //如果鼠标已移出滑块的范围，恢复滑块的颜色。
+                    svg.addEventListener('mouseup', function(event){
+                        pressed = false;
+                        if (!isInBox(toUserCor(event), slider.getBBox())) {
+                            slider.setAttribute('fill', 'grey');
+                        }
+                    }, false);
+                    //鼠标移动时，如果鼠标键是按下的，更新滑块的位置，并且修改脸中的弧线。
+                    svg.addEventListener('mousemove', function(event){
+                        if (pressed) {
+                            var p = toUserCor(event);
+                            var barBox=bar.getBBox();
+                            var sliderBox=slider.getBBox();
+                            var sliderY=p.y + offsetY;
+                            if (sliderY>= barBox.y && sliderY<= barBox.y + barBox.height - sliderBox.height) {
+                                slider.setAttribute('y', sliderY);
+                                //d='M-18,18 Q0,-2 18,18'
+                                //滑动条高度为100，中点纵坐标为-4，笑脸控制点纵坐标变化范围为-2到38。
+                                var y=Math.round(((sliderY-(-4))/50)*20+18);
+                                mouth.setAttribute('d', 'M-18,18 Q0,'+y+' 18,18');
+                            }                           
+                        }
+                    }, false);
+                    //DOM Level 3还没有列出与拖放相关的事件，但是Firefox（其他浏览器如IE也类似）已经实现了。
+                    //如果不取消拖放，则当鼠标拖动滑块时，有时会出现拖放无效的提示，并导致鼠标键释放的事件无法被监听到。
+                    svg.addEventListener('dragstart', 
+                    function(event){
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }, false)
+                }
+                
+                init();
+                addListeners();
+            }
+            
+            //检查一个点是否在某个Bouding Box以内。
+            function isInBox(point, box){
+                return point.x >= box.x &&
+                point.x <= box.x + box.width &&
+                point.y >= box.y &&
+                point.y <= box.y + box.height;
+            }
+            
+            //测试
+            function test(){
+                var s = Slider('pressure');
+            }
+            
+            window.addEventListener('load', test, true);
+            /* ]]> */
+        </script>
+    </head>
+    <body>
+        <div id="message">
+        </div>
+        <div id='svgDiv'>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-100 -100 200 200" style="border:1px solid; width:200px; height:200px; ">
+                <!--脸的各个部件被归于id为face的组中-->
+                <g id='face'>
+                    <!--脸的“背景”，一个黄色的圆-->
+                    <circle cx="0" cy="0" r="50" stroke="black" stroke-width='0.2' fill="yellow" />
+                    <!--两个黑色的实心的小圆作为眼睛-->
+                    <circle cx='18' cy='-18' r='3'/>
+                    <circle cx='-18' cy='-18' r='3'/>
+                    <!--一段贝塞尔曲线作为嘴-->
+                    <path name='mouth' d='M-18,18 Q0,-2 18,18' style='stroke:black; fill:none;'/>
+                </g>
+                <!--滑动条的各个部件被归于id为pressure的组中-->
+                <g id='pressure'>
+                    <!--第一个矩形作为滑动条的外框-->
+                    <rect name='bar' x='70' y='-54' width='8' height='108' style='stroke:black; stroke-width:0.5; fill:white;'/>
+                    <!--第二个灰色实心矩形作为滑块-->
+                    <rect name='slider' x='64' y='-54' width='20' height='8' fill='grey' style='stroke:black; stroke-width:0.5;'/>
+                </g>
+            </svg>
+        </div>
+    </body>
+</html>
+

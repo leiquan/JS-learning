@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+
+		<script>
+			var o = function() {
+
+				var a = 9;
+
+				this.set = function(n) {
+					a = n;
+				}
+
+				this.get = function() {
+					alert(a);
+				}
+
+			}
+
+			var a = new o();
+			a.get();
+			a.set(999);
+			a.get();
+			alert(o.a);
+
+
+			var child = function(s) {
+				this.temp = o;
+				this.temp();
+				delete this.temp;
+
+				this.say = function() {
+					alert(s)
+				}
+
+			}
+			
+			var c=new child("我是child的自定义方法");
+			c.get();
+			c.say();
+		</script>
+
+	</body>
+
+</html>

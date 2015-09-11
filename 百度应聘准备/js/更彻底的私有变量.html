@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+
+		<script>
+			var JSClass = (function() {
+
+				var privateStaticVariable = "私有静态变量";
+				var privateStaticMethod = function() {
+					alert("调用私有静态方法");
+				};
+
+				return function() {
+					this.get = function() {
+						return privateStaticVariable;
+					}
+					this.set = function(obj) {
+						privateStaticVariable = obj;
+					}
+					this.static = function() {
+						privateStaticMethod();
+					}
+				};
+			})();
+			
+			var a = new JSClass();
+
+			alert(a.get());
+
+			a.set("改变的私有静态变量");
+
+			alert(a.get());
+
+			a.static();
+
+			var ClassB = function() {
+				this.temp = JSClass;
+				this.temp();
+				delete this.temp;
+			}
+
+			var b = new ClassB();
+			alert(b.get());
+
+			b.set("改变的私有静态变量");
+
+			alert(b.get());
+
+			b.static();
+		</script>
+
+	</body>
+
+</html>
