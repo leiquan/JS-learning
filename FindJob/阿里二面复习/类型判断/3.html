@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script>
+			/***** 3、通过 instanceof  *****/
+			/* 用instanceof操作符来判断对象是否是某个类的实例。
+			    如果obj instanceof Class返回true，那么Class的原型与obj原型链上的某个原型是同一个对象，
+			    即obj要么由Class创建，要么由Class的子类创建。
+			*/
+			function t() {};
+			t.prototype = Array.prototype;
+			 //t.prototype  = [];
+			var x = new t();
+			alert(x instanceof t); //弹出true
+			alert(x instanceof Array); //弹出true
+			alert(x instanceof Object); //弹出true
+			/*
+			由此可知，通过 instanceof 判断数据类型也不可靠。
+			因为一个对象（此处x）的原型链可以很长，每个原型的类型可以不同。
+
+			另外在iframe内也会容易出错：
+			即有个页面定义了一个数组a，页面又嵌套了一个IFrame，在Iframe里面通过 top.a instanceof Array， 是返回false的。
+			这个说明 父页面和内嵌iframe里的对象是不同的，不能混合在一起使用。
+			改成top.a instanceof top.Array 就会返回true
+			*/
+		</script>
+	</body>
+
+</html>

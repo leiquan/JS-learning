@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+
+		<script>
+			function getAbsPoint(e){
+var x = e.offsetLeft, y = e.offsetTop;
+while (e = e.offsetParent) {
+x += e.offsetLeft;
+y += e.offsetTop;
+}
+alert("x:" + x + "," + "y:" + y);
+}
+		</script>
+
+
+	</body>
+
+</html>

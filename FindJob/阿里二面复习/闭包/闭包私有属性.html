@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script>
+			function Person(n, a) {
+				
+				// private
+				var age = a;
+				this.getAge = function() {
+					return age;
+				}
+				this.setAge = function(n) {
+					age=n;
+				}
+
+			}
+			
+			var a=new Person("haha",32);
+			a.getName();
+			alert(a.getAge());
+			a.setAge(1);
+			alert(a.getAge());
+			
+			var b=new Person("haha",31);
+			b.getName();
+			alert(b.getAge());
+			b.setAge(2);
+			alert(b.getAge());
+			
+		</script>
+
+
+	</body>
+
+</html>

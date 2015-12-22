@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#canvasContainer {
+				width: 600px;
+				height: 400px;
+				position: relative;
+				border: 1px solid black;
+			}
+			#canvas1 {
+				width: 600px;
+				height: 400px;
+				position: absolute;
+			}
+			#canvas2 {
+				width: 600px;
+				height: 400px;
+				position: absolute;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div id="canvasContainer">
+			<canvas id="canvas1"></canvas>
+			<canvas id="canvas2"></canvas>
+		</div>
+
+
+		<script>
+			window.onload = function() {
+
+				var canvas1 = document.getElementById("canvas1");
+				var context1 = canvas1.getContext("2d");
+
+				context1.fillStyle = "black";
+				context1.fillRect(0, 0, 10, 10);
+
+				var canvas2 = document.getElementById("canvas2");
+				var context2 = canvas2.getContext("2d");
+				context2.rotate(60 * Math.PI / 180);
+				context2.fillStyle = "red";
+				context2.fillRect(20, 20, 100, 100);
+
+
+
+
+			}
+		</script>
+
+	</body>
+
+</html>

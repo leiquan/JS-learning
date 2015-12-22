@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+
+		<script>
+			function sGet(n) { //转换函数
+
+				var last = n % 17; //最后一位
+				console.log("转换前的last");
+				switch (last) {
+					case 10:
+						last = "A";
+						break;
+					case 11:
+						last = "B";
+						break;
+					case 12:
+						last = "C";
+						break;
+					case 13:
+						last = "D";
+						break;
+					case 14:
+						last = "E";
+						break;
+					case 15:
+						last = "F";
+						break;
+					case 16:
+						last = "G";
+						break;
+					default:
+						last = last.toString();
+						break;
+				}
+				return last;
+			}
+			
+function trans(n,s){
+	
+	if(s==null){//第一轮
+		s="";
+	}
+	
+	if(n<17){
+		s=sGet(n)+s;
+	}else{
+		var a=n%17;//余数直接转换
+		s=sGet(a)+s;//末尾
+		
+		var b=parseInt(n/17).toString();//非末尾位数
+		
+		if(b<17){
+			s=sGet(b)+s;
+		}else{
+			trans(b,s);
+		}
+		
+	}
+	return s;
+}
+
+			function getCountOfG(arr) {
+
+			}
+			
+			alert(trans(290));
+			
+		</script>
+
+	</body>
+
+</html>

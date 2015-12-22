@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/ClassStage.js"></script>
+		<script src="js/ClassSprites.js"></script>
+		<script src="js/ClassCircleSprite.js"></script>
+	</head>
+
+	<body>
+
+		<canvas id="myCanvas"></canvas>
+
+
+		<script>
+			window.onload = function() {
+
+					var myCanvas = document.getElementById("myCanvas");
+					var myStage = new ClassStage(myCanvas);
+
+
+					var circleSprite = new ClassCircleSprite(20, 20, 30, 30);
+
+					myStage.addSprite(circleSprite);
+
+
+					myStage.start();
+
+
+
+
+				} //onload
+		</script>
+
+	</body>
+
+</html>

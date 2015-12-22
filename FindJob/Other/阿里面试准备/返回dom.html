@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+</head>
+<body>
+
+    <div id="parent">
+        <div id="child1">
+            <p id="child2">
+                <span id="child3">
+                    <a id="child4">
+                    </a>
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+
+            function getChildren(parent, n) {
+               
+                n--;
+
+                if (n > 0) {
+                    if (parent.children[0]) {
+
+                        var currentNode = parent.children[0];
+
+                        alert(currentNode.nodeName);
+
+                        getChildren(currentNode, n);
+
+                    }
+
+                } else {
+                    alert(parent.childNodes)
+                }
+
+                
+               
+                
+
+                    
+
+                
+
+                
+
+            }
+
+            var parent = document.getElementById("parent");
+
+            getChildren(parent,2);
+
+        }
+    </script>
+
+</body>
+</html>

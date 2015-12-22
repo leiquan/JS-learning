@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+
+		<script>
+			var scope = 'global';
+			var f = function() {
+				console.log(scope); // 输出 undefined,已声明，好难受
+				var scope = 'f';
+			}
+			f();
+		</script>
+
+
+	</body>
+
+</html>

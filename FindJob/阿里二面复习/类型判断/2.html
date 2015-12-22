@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script>
+			/***** 2、通过typeof  *****/
+			/* 
+			    typeof是一个操作符，而不是个函数。
+			    typeof的实际应用是用来检测一个对象是否已经定义或者是否已经赋值。
+			        如if(typeof a!="undefined"){}，而不要去使用if(a)因为如果a不存在（未声明）则会出错。
+			    typeof检测对象类型时一般只能返回如下几个结果：
+			    number,boolean,string,function,object,undefined。
+			    对于Array,Null,自定义对象 等使用typeof一律返回object，
+			        这正是typeof的局限性。
+			*/
+			var num = new Number(1);
+			var arr = [1, 2, 3];
+			alert(typeof num); //object 而不是number
+			alert(typeof arr); //object 而不是Array
+			alert(typeof null); // object
+		</script>
+	</body>
+
+</html>

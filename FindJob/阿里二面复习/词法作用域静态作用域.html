@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+
+		<script>
+			var scope = 'top';
+			var f1 = function() {
+				console.log(scope);
+			};
+			f1(); // 输出 top
+			var f2 = function() {
+				var scope = 'f2';
+				f1();
+			};
+			f2(); // 输出 top
+			
+			//作用域在定义的时候确定的。。。。。。。。。。，不是运行的时候
+		</script>
+
+	</body>
+
+</html>

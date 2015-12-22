@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+</head>
+<body>
+
+    <script>
+
+        function A() {
+            alert("执行了");
+            this.name = 'longze';
+        }
+        A.prototype.age = 29;
+
+        function B() {
+            this.temp = A;
+            this.temp();
+            delete this.temp;
+        }
+
+        var b = new B();
+        alert(b.name);
+
+    </script>
+
+</body>
+</html>

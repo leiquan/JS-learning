@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+  
+  	var Person  = function()
+  	{
+  		this.sex="male";
+  	};
+  	
+  	Person.prototype.username = "zhangsan";
+  	
+  	var person1 = new Person();
+  	var person2 = new Person();
+  	
+  	alert("实例创建后,person1.username: "+person1.username);
+  	alert("实例创建后,person2.username: "+person2.username);
+  	
+  	alert("向原型增加属性age前,person1.age: "+person1.age);
+  	alert("向原型增加属性age前,person2.age: "+person2.age);
+  	
+  	//向原型增加属性
+  	Person.prototype.age = new String("18");
+  	
+  	
+  	alert("向原型增加属性age后,person1.age: "+person1.age);
+  	alert("向原型增加属性age后,person2.age: "+person2.age);
+  	
+  	
+  	</script>
+	</body>
+</html>

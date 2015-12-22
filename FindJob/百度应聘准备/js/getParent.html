@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<ul>
+			<li id="zero"></li>
+			<li id="one"></li>
+			<li id="two"></li>
+		</ul>
+		
+		<script>
+			function getIndexParent(element){
+				
+				//alert(element.id);
+				
+				var parent=element.parentNode;
+				var arr=[];
+				for(var i=0;i<parent.childNodes.length;i++){
+					
+					if(parent.childNodes[i].nodeType==1){
+						arr.push(parent.childNodes[i].id);
+					}
+					
+				}
+				
+				for(var j=0;j<arr.length;j++){
+					if(arr[j]==element.id){
+						alert(j);
+					}
+				}
+				
+			}
+			
+			getIndexParent(document.getElementById("zero"));
+		</script>
+		
+		
+	</body>
+</html>

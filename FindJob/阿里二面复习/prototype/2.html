@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			var Person  = function()
+		  	{
+		  	};
+		  	
+		  	Person.prototype.username = new String("zhangsan");
+		  	
+		  	var person = new Person();
+		  	
+		  	alert("实例创建后,person.username: "+person.username);  	
+		  	
+		  	//向实例增加与prototype同名的属性
+		  	person.username = new String("lisi");
+		  	
+		  	alert("向实例增加与prototype同名的属性后,person.username: "+person.username);  
+		  	
+		  	//删除实例上的username属性,然后访问[实例].username得到的会是undefined吗?
+		  	delete person.username;
+		  	
+		  	alert("删除实例上的username属性后,person.username: "+person.username);
+		</script>
+	</body>
+
+</html>

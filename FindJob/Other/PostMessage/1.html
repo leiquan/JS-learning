@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	
+	
+	
+	
+	
+	<body>
+		
+		
+		
+		11111111111
+	
+	<iframe src="2.html" id="iframe"></iframe>
+	
+	
+	<script>
+		
+		
+		window.document.onmousemove = function(e) {  
+  var x = (window.Event) ? e.pageX : window.event.clientX;  
+  var y = (window.Event) ? e.pageY : window.event.clientY;  
+
+ document.getElementById("iframe").contentWindow.postMessage('x = ' + x + ' y = ' + y, '*');
+  
+};  
+
+    
+	</script>
+		
+
+		
+		
+	</body>
+	
+	
+	
+</html>

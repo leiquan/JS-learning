@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="zrender/esl.js"></script>
+		<style>
+			* {
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+
+	<body>
+
+
+		<div id="test" style="width:600px;height:400px; background-color:gray ;"></div>
+
+
+
+		<script>
+			require( //导入需要使用的模块啊
+				[
+					"zrender/src/zrender", //主模块
+					"zrender/src/animation/Animation",
+					"zrender/src/shape/Circle",
+					"zrender/src/shape/Star",
+					"zrender/src/shape/Isogon",
+					"zrender/src/shape/Rectangle",
+
+
+				],
+				function(zrender, Animation, CircleShape, starShape, Isogon, Rectangle) {
+
+					// 初始化zrender
+					var zr = zrender.init(document.getElementById("test"));
+
+
+					var circle = new CircleShape({
+						style: {
+							x: 100,
+							y: 100,
+							r: 50,
+							color: 'rgba(135, 206, 250, 0.8)', // rgba supported
+							text: 'circle',
+							textPosition: 'inside',
+
+
+						},
+						draggable: false,
+						hoverable: false,
+						clickable: true,
+						onclick: function() {
+
+							//alert("a");
+							//san.rotation(Math.PI*2);
+							//	zr.animate(san.id, 'style', true)
+							//	.when(1000, {
+							//		color:"red",
+							//		rotation:[10]
+							//	})
+							//	.start();
+
+
+
+
+							zr.animate(circle.id)
+								.when(5000, {
+									rotation: [Math.PI * 2, 100, 100]
+								})
+								.start();
+
+
+
+							//zr.delShape(san);
+							//zr.addShape(circle);
+							//zr.refresh();
+
+
+						},
+
+
+					});
+
+					var san = new Isogon({
+						style: {
+							x: 100,
+							y: 100,
+							r: 100,
+							n: 3,
+							color: 'rgba(135, 206, 250, 0.8)',
+							text: 'isogon',
+							textPosition: 'inside',
+
+
+						},
+						draggable: false,
+						hoverable: false,
+						onmouseover: function() {
+
+							//alert("a");
+							//san.rotation(Math.PI*2);
+							//	zr.animate(san.id, 'style', true)
+							//	.when(1000, {
+							//		color:"red",
+							//		rotation:[10]
+							//	})
+							//	.start();
+
+
+
+
+							zr.animate(circle.id)
+								.when(5000, {
+									rotation: [Math.PI * 2, 100, 100]
+								})
+								.start();
+
+
+
+							//zr.delShape(san);
+							//zr.addShape(circle);
+							//zr.refresh();
+
+
+						},
+						onmouseout: function() {
+
+						}
+
+					});
+
+
+
+					var Rectangle = new Rectangle({
+						style: {
+							x: 0,
+							y: 0,
+							width: 200,
+							height: 200,
+							color: 'rgba(135, 206, 250, 0.8)',
+							text: 'rectangle',
+							textPosition: 'inside'
+						},
+						draggable: true,
+						onmouseover: function() {
+
+							//alert("a");
+							//san.rotation(Math.PI*2);
+							//	zr.animate(san.id, 'style', true)
+							//	.when(1000, {
+							//		color:"red",
+							//		rotation:[10]
+							//	})
+							//	.start();
+
+
+
+
+							zr.animate(Rectangle.id)
+								.when(5000, {
+									rotation: [Math.PI * 2, 100, 100]
+								})
+								.start();
+
+
+
+							//zr.delShape(san);
+							//zr.addShape(circle);
+							//zr.refresh();
+
+
+						},
+
+					});
+
+
+					//zr.addShape(po);
+					zr.addShape(Rectangle);
+					zr.render();
+
+				});
+		</script>
+
+	</body>
+
+</html>

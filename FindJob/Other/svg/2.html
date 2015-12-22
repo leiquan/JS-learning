@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>模拟单选钮1</title>
+        <script language='JavaScript'>
+            /* <![CDATA[ */
+            function mimicRadio(){
+                var radName = 'pRadio', selectedId = 'pRadioSelected';
+                var ns = 'http://www.w3.org/2000/svg';//SVG元素的命名空间。
+                var circles = document.getElementsByTagNameNS(ns, 'circle');
+                var selected = document.getElementById(selectedId);//用于模拟选中状态的实心圆。
+                var circle;
+                for (var i = 0; i < circles.length; i++) {
+                    circle = circles[i];
+                    if (circle.getAttribute('name') === radName) {
+						//上面提到过，在XML的DOM中，没有getElementsByName方法，所以我们需要手工检查元素的name属性。
+						//为circle元素添加鼠标响应。
+						//通过设置实心圆的位置和style中的display值，模拟单选钮被选中的行为。
+                        circle.addEventListener('click', function(){
+                            selected.setAttribute('cx', this.getAttribute('cx'));
+                            selected.setAttribute('cy', this.getAttribute('cy'));
+                            selected.style.display = 'block';
+                        }, true)
+                    }
+                }
+                
+            }
+            
+            window.addEventListener('load', mimicRadio, true);
+            /* ]]> */
+        </script>
+    </head>
+    <body>
+        <div id='svgDiv'>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 120 100" style="border:1px solid; width:120px; height:100px; ">
+                <circle name='pRadio' cx="20" cy="50" r="6" stroke="black" stroke-width='0.5' fill="white" />
+                <text x='28' y='53'>
+                    上升
+                </text>
+                <circle name='pRadio' cx="70" cy="50" r="6" stroke="black" stroke-width='0.5' fill="white"/>
+                <text x='78' y='53'>
+                    下降
+                </text>
+                <circle id='pRadioSelected' cx="20" cy="50" r="2" style='display:none;'/>
+            </svg>
+        </div>
+    </body>
+</html>
+

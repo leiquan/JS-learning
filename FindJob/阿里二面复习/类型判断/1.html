@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script>
+			/********** 二：数据类型的检测 **********/
+			/* 判断数据类型可能想到的方法：
+			constructor、typeof、instanceof、Object.prototype.toString.call()
+			*/
+			/***** 1、通过constructor属性  *****/
+			var myvar = new Array("a", "b", "c", "d");
+
+			function A() {}
+			myvar.constructor = A;
+			
+			var c = myvar.constructor;
+			
+			alert(c); // function A(){}
+			 //可见，通过constructor属性获取类型的方法很容易被修改，不应该用来判断类型。
+		</script>
+	</body>
+
+</html>

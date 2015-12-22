@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+
+
+
+		<script>
+			var a = 1;
+
+			function b(n) {
+				var b = a;
+				var a = n;//变量提前
+				alert(a);
+				alert(b);
+			}
+			b();//und und
+			b(a);//a und    //作用域和变量提前声明
+		</script>
+
+
+
+	</body>
+
+</html>
