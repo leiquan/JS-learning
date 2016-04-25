@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var P = function () {
+        this.q = [];
+        this.next = function (cbs) {
+            this.q.push(cbs);
+            return this;
+        };
+        this.done = function (value) {
+            var cb = this.q.shift();
+            if (cb) {
+                value ? cb(value) : cb();
+            }
+        };
+        return this;
+    };
+</script>
+
+</body>
+</html>
